@@ -20,6 +20,7 @@ int angle_servo_3;
 int angle_servo_4;
 int angle_servo_5;
 int angle_servo_6;
+String Rx_data;
 
 void init_servo()
 {
@@ -137,11 +138,136 @@ void active_servo(int angle_servo_1, int angle_servo_2, int angle_servo_3, int a
   }
 }
 
+void left2right(int angle_servo_1)
+{
+  if(servo1.read() < angle_servo_1)
+  {
+    for(int post = servo1.read(); post <= angle_servo_1; post++)
+    {
+      servo1.write(post);
+      delay(5);
+    }
+  }
+  else if(servo1.read() > angle_servo_1)
+  {
+    for(int post = servo1.read(); post >= angle_servo_1; post--)
+    {
+      servo1.write(post);
+      delay(5);
+    }
+  }
+}
+
+void front2back(int angle_servo_2)
+{
+  if(servo2.read() < angle_servo_2)
+  {
+    for(int post = servo2.read(); post <= angle_servo_2; post++)
+    {
+      servo2.write(post);
+      delay(5);
+    }
+  }
+  else if(servo2.read() > angle_servo_2)
+  {
+    for(int post = servo2.read(); post >= angle_servo_2; post--)
+    {
+      servo2.write(post);
+      delay(5);
+    }
+  }
+}
+
+void top2bottom(int angle_servo_3)
+{
+  if(servo3.read() < angle_servo_3)
+  {
+    for(int post = servo3.read(); post <= angle_servo_3; post++)
+    {
+      servo3.write(post);
+      delay(5);
+    }
+  }
+  else if(servo3.read() > angle_servo_3)
+  {
+    for(int post = servo3.read(); post >= angle_servo_3; post--)
+    {
+      servo3.write(post);
+      delay(5);
+    }
+  }
+}
+
+void sfront2sback(int angle_servo_4)
+{
+  if(servo4.read() < angle_servo_4)
+  {
+    for(int post = servo4.read(); post <= angle_servo_4; post++)
+    {
+      servo4.write(post);
+      delay(5);
+    }
+  }
+  else if(servo4.read() > angle_servo_4)
+  {
+    for(int post = servo4.read(); post >= angle_servo_4; post--)
+    {
+      servo4.write(post);
+      delay(5);
+    }
+  }
+}
+
+void rleft2rright(int angle_servo_5)
+{
+  if(servo5.read() < angle_servo_5)
+  {
+    for(int post = servo5.read(); post <= angle_servo_5; post++)
+    {
+      servo5.write(post);
+      delay(5);
+    }
+  }
+  else if(servo5.read() > angle_servo_5)
+  {
+    for(int post = servo5.read(); post >= angle_servo_5; post--)
+    {
+      servo5.write(post);
+      delay(5);
+    }
+  }
+}
+
+void hold2drop(int angle_servo_6)
+{
+  if(servo6.read() < angle_servo_6)
+  {
+    for(int post = servo6.read(); post <= angle_servo_6; post++)
+    {
+      servo6.write(post);
+      delay(5);
+    }
+  }
+  else if(servo6.read() > angle_servo_6)
+  {
+    for(int post = servo6.read(); post >= angle_servo_6; post--)
+    {
+      servo6.write(post);
+      delay(5);
+    }
+  }
+}
+
 void setup() {
   Serial.begin(9600);
   init_servo();
+  active_servo(90,60,100,60,180,170);
 }
 
 void loop() {
+  if (Serial.available() > 0)
+  {
+    Rx_data = Serial.readString();
 
+  }
 }
